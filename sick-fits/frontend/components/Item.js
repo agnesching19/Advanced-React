@@ -24,6 +24,7 @@ export default class Item extends Component {
               query: { id: item.id }
             }}
           >
+            
             <a>{item.title}</a>
           </Link>
         </Title>
