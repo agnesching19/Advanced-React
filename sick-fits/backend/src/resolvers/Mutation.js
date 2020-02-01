@@ -55,6 +55,27 @@ const Mutations = {
     });
     // Finally we return the user to the browser
     return user;
+  },
+  async signin(parent, { email,password }, context, info) {
+    // Check if there's a user with that email
+    const user = await context.db.query.user({where: { email }});
+    if (!user) {
+      throw new Error(`No such user found for email ${email}`);
+    }
+    // Check if their password is correct
+    const valid = await bcrypt.compare(password, user.password);
+    if (!valid) {
+      throw new Error('Invalid password!');
+    }
+    // Generate the jwt token
+    const token = jwt.sign({ user: user.id }, process.env.APP_SECRET);
+    // Set the cookie with the token
+    context.response.cookie('token', token, {
+      httpOnly: true,
+      maxAge: 1000 * 60 * 60 * 24 * 365, // 1 year cookie
+    });
+    // Return the user
+    return user;
   }
 };
 
