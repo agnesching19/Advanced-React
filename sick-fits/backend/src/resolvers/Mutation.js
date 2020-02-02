@@ -110,7 +110,6 @@ const Mutations = {
         <a href="${process.env.FRONTEND_URL}/reset?resetToken=${resetToken}">
           Click here to reset
         </a>`
-        
       )
     });
     // Return the message
