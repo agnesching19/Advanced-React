@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken');
 const { randomBytes } = require('crypto');
 const { promisify } = require('util');
 const { hasPermission } = require('../utils');
+const stripe = require('../stripe');
 
 const { transport, makeANiceEmail} = require('../mail');
 
@@ -243,6 +244,38 @@ const Mutations = {
     return context.db.mutation.deleteCartItem({
       where: { id: args.id }
     }, info);
+  },
+  async createOrder(parent, args, context, info) {
+    // Query the current user and make sure they are signed in
+    const { userId } = context.request;
+    if (!userId) throw new Error('You must be signed in to complete this order.');
+    const user = await context.db.query.user(
+      { where: { id: userId } },
+      `{
+      id
+      name
+      email
+      cart {
+        id
+        quantity
+        item { title price id description image }
+      }}`
+    );
+    // Recalculate the total for the price
+    const amount = user.cart.reduce(
+      (tally, cartItem) => tally + cartItem.item.price * cartItem.quantity,
+      0
+    );
+    // Create the Stripe charge
+    const charge = await stripe.charges.create({
+      amount,
+      currency: 'GBP',
+      source: args.token,
+    });
+    // Convert the CartItems to OrderItems
+    // Create the order
+    // Clean up - clear the user's cart, delete CartItems
+    // Return thr order to the client
   }
 };
 
