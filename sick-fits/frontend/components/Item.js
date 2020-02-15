@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import propTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import Link from 'next/link';
 import Title from './styles/Title';
 import ItemStyles from './styles/ItemStyles';
@@ -10,7 +10,7 @@ import AddToCart from './AddToCart';
 
 export default class Item extends Component {
   static propTypes = {
-    item: propTypes.object.isRequired
+    item: PropTypes.object.isRequired
   };
 
   render() {

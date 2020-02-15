@@ -26,6 +26,22 @@ const Query = {
     hasPermission(context.request.user, ['ADMIN', 'PERMISSIONUPDATE']);
     // If they do, query all the users
     return context.db.query.users({}, info);
+  },
+  async order(parent, args, context, info) {
+    // Make sure they are logged in
+    if (!context.request.userId) throw new Error("You aren't logged in!");
+    // Query the current order
+    const order = await context.db.query.order({
+      where: { id: args.id },
+    }, info);
+    // Check if they have the permission to see this order
+    const ownsOrder = order.user.id === context.request.userId;
+    const hasPermissionToSeeOrder = context.request.user.permissions.includes('ADMIN');
+    if (!ownsOrder || !hasPermissionToSeeOrder) {
+      throw new Error("You aren't allowed to see this order!");
+    }
+    // Return the order
+    return order;
   }
 };
 
