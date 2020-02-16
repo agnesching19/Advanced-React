@@ -37,7 +37,6 @@ const USER_ORDERS_QUERY = gql`
 const getQuantity = order => order.items.reduce((a, b) => a + b.quantity, 0);
 
 class OrderList extends Component {
-
   render() {
     return (
       <Query query={USER_ORDERS_QUERY}>
