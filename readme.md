@@ -2,4 +2,4 @@
 
 # Advanced React & GraphQL
 
-This project is made by following the course of [Advanced React & GraphQL](https://AdvancedReact.com) course by [Wes Bos](https://WesBos.com/).
+This project is made by following the course of [Advanced React & GraphQL](https://AdvancedReact.com) by [Wes Bos](https://WesBos.com/).
