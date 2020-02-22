@@ -10,7 +10,6 @@ const fakeItem = {
   largeImage: 'largeWhisky.jpg'
 }
 
-
 describe('<Item />', () => {
   it('renders the PriceTag and title properly', () => {
     const wrapper = shallow(<ItemComponent item={fakeItem} />);
