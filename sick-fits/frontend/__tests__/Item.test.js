@@ -8,7 +8,7 @@ const fakeItem = {
   description: 'The best whisky in the world that you should try!',
   image: 'whisky.jpg',
   largeImage: 'largeWhisky.jpg'
-}
+};
 
 describe('<Item />', () => {
   it('renders the PriceTag and title properly', () => {
