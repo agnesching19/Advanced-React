@@ -17,6 +17,7 @@ describe('<Item />', () => {
     expect(PriceTag.children().text()).toBe('£999.99');
     expect(wrapper.find('Title a').text()).toBe(fakeItem.title);
   });
+  
 
   it('renders the image properly', () => {
     const wrapper = shallow(<ItemComponent item={fakeItem} />);
