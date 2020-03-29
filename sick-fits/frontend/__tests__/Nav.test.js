@@ -58,7 +58,6 @@ describe('<Nav />', () => {
     expect(nav.text()).toContain('Sign out');
     // expect(toJSON(nav)).toMatchSnapshot();
   });
-  
 
   it('renders the amount of items in the cart', async () => {
     const wrapper = mount(
