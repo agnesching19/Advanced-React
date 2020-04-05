@@ -32,3 +32,4 @@ class AddToCart extends React.Component {
 }
 
 export default AddToCart;
+export { Add_TO_CART_MUTATION };
