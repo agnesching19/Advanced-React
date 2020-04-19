@@ -29,6 +29,7 @@ type Query {
   orders(orderBy: OrderOrderByInput): [Order]!
 }
 
+
 type User {
   id: ID!
   name: String!
