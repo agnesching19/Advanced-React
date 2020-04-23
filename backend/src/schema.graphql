@@ -33,6 +33,7 @@ type User {
   id: ID!
   name: String!
   email: String!
+  
   permissions: [Permission!]!
   cart: [CartItem!]!
   orders: [OrderItem]
