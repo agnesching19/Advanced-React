@@ -36,5 +36,4 @@ type User {
   permissions: [Permission!]!
   cart: [CartItem!]!
   orders: [OrderItem]
-  
 }
