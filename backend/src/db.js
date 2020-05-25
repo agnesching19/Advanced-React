@@ -8,5 +8,4 @@ const db = new Prisma({
   debug: false
 });
 
-
 module.exports = db;
