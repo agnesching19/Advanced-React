@@ -14,6 +14,7 @@ function createClient({ headers }) {
         headers,
       });
     },
+    
     // Local data
     clientState: {
       resolvers: {
